@@ -41,6 +41,22 @@ public class InputManager : MonoBehaviour
                 Debug.Log("Attack Control Activeated");
             }
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (GameManager.Instance.InterMan.SelectedPawn)
+            {
+                GameManager.Instance.InterMan.InTurnControl = true;
+                Debug.Log("Turn Control Activeated");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (GameManager.Instance.InterMan.SelectedPawn)
+            {
+                GameManager.Instance.InterMan.InMoveControl = true;
+                Debug.Log("Move Control Activeated");
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameManager.Instance.InterMan.startActionPhase();
@@ -59,13 +75,22 @@ public class InputManager : MonoBehaviour
 
     private void pawnControl()
     {
-        if (!GameManager.Instance.InterMan.InAttackControl)
+        if (GameManager.Instance.InterMan.InAttackControl)
+        {
+            GameManager.Instance.InterMan.SelectedPawn.setAttackDir(mousePos);
+            
+        }
+        else if (GameManager.Instance.InterMan.InMoveControl)
         {
             GameManager.Instance.InterMan.SelectedPawn.setMovePos(mousePos);
         }
+        else if (GameManager.Instance.InterMan.InTurnControl)
+        {
+            GameManager.Instance.InterMan.SelectedPawn.setAttackDir(mousePos, true);
+        }
         else
         {
-            GameManager.Instance.InterMan.SelectedPawn.setAttackDir(mousePos);
+            Debug.Log("No Control Activated");
         }
     }
 }

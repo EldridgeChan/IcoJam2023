@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ScoutAttributes
   m_EditorClassIdentifier: 
   MaxHealth: 3
-  AttackPower: 2
+  AttackPower: 1
   MoveDistance: 7

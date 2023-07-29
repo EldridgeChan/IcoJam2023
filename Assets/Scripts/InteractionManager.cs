@@ -12,7 +12,11 @@ public class InteractionManager : MonoBehaviour
     private PawnBehaviour selectedPawn = null;
     public PawnBehaviour SelectedPawn { get { return selectedPawn; } }
     private bool inAttackControl = false;
-    public bool InAttackControl { get { return inAttackControl; } set { inAttackControl = value; } } 
+    public bool InAttackControl { get { return inAttackControl; } set { inAttackControl = value; } }
+    private bool inTurnControl = false;
+    public bool InTurnControl { get { return inTurnControl; } set { inTurnControl = value; } }
+    private bool inMoveControl = false;
+    public bool InMoveControl { get { return inMoveControl; } set { inMoveControl = value; } }
 
     [SerializeField]
     private PawnBehaviour[] testPlayerPawns;
@@ -22,6 +26,30 @@ public class InteractionManager : MonoBehaviour
         foreach (PawnBehaviour pawn in testPlayerPawns)
         {
             playerPawns.Add(pawn);
+        }
+    }
+
+    public void addPawn(PawnBehaviour pawn, bool isPlayerPawn)
+    {
+        if (pawn)
+        {
+            (isPlayerPawn ? playerPawns : enemyPawns).Add(pawn);
+        }
+        else
+        {
+            Debug.Log("ERROR: Pawn to add is null");
+        }
+    }
+
+    public void removePawn(PawnBehaviour pawn)
+    {
+        if (pawn)
+        {
+            (pawn.CompareTag("PlayerPawn") ? playerPawns : enemyPawns).Remove(pawn);
+        }
+        else
+        {
+            Debug.Log("ERROR: Pawn to remove is null");
         }
     }
 

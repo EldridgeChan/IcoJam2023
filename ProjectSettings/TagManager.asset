@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerPawn
+  - Shield
   layers:
   - Default
   - TransparentFX

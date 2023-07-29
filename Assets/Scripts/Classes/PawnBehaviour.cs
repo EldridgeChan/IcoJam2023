@@ -7,10 +7,17 @@ public class PawnBehaviour : MonoBehaviour
     [SerializeField]
     private ClassAttributesScriptableObject classScriptObj;
     [SerializeField]
-    private Animator pawnAnmt;
-    [SerializeField]
     private Rigidbody2D pawnRig;
+    [SerializeField]
+    private Animator pawnAnmt;
+    public Animator PawnAnmt { get { return pawnAnmt; } }
 
+    private bool hasAttack = false;
+    public bool HasAttack { get { return hasAttack; } }
+    private bool hasMove = false;
+    public bool HasMove { get { return hasMove; }  set { hasMove = value; } }
+    private bool hasTurn = false;
+    public bool HasTurn { get { return hasTurn; } set { hasTurn = value; } }
 
     private int currHealth;
     private float moveT = 0.0f;
@@ -20,7 +27,6 @@ public class PawnBehaviour : MonoBehaviour
     private Vector2 movePos = Vector2.zero;
     private Vector2 orgDir = Vector2.zero;
     private Vector2 attackDir = Vector2.zero;
-    private bool hasAttack = false;
 
     private void Awake()
     {
@@ -30,9 +36,7 @@ public class PawnBehaviour : MonoBehaviour
 
     private void Start()
     {
-        //meant to delete Just for testing purposes
-        movePos = pawnRig.position;
-        orgDir = new Vector2(Mathf.Cos(pawnRig.rotation * Mathf.Deg2Rad), Mathf.Sin(pawnRig.rotation * Mathf.Deg2Rad));
+        init();
     }
 
     private void FixedUpdate()
@@ -49,13 +53,22 @@ public class PawnBehaviour : MonoBehaviour
         switch (currPhase)
         {
             case ActionPhases.MoveTurnPhase:
-                turnPawn(moveT);
+                if (hasMove)
+                {
+                    turnPawn(moveT);
+                }
                 break;
             case ActionPhases.MovingPhase:
-                movePawn(moveT);
+                if (hasMove)
+                {
+                    movePawn(moveT);
+                }
                 break;
             case ActionPhases.AttackTurnPhase:
-                turnPawn(moveT, false);
+                if (hasAttack || hasTurn)
+                {
+                    turnPawn(moveT, false);
+                }
                 break;
             case ActionPhases.AttackPhase:
                 attack();
@@ -72,8 +85,9 @@ public class PawnBehaviour : MonoBehaviour
             if (currPhase == ActionPhases.MovingPhase)
             {
                 pawnAnmt.SetBool("Walking", false);
+                movePos = pawnRig.position;
+                hasMove = false;
             }
-
             if (currPhase != ActionPhases.AttackPhase)
             {
                 GameManager.Instance.InterMan.actionFinishCallback();
@@ -88,13 +102,13 @@ public class PawnBehaviour : MonoBehaviour
         currPhase = phase;
         isInAction = true;
 
-        if (phase == ActionPhases.MovingPhase)
+        if (phase == ActionPhases.MovingPhase && hasMove)
         {
             pawnAnmt.SetBool("Walking", true);
         }
     }
 
-    virtual public void attack()
+    public virtual void attack()
     {
         if (hasAttack)
         {
@@ -109,30 +123,63 @@ public class PawnBehaviour : MonoBehaviour
         GameManager.Instance.InterMan.actionFinishCallback();
     }
 
-    private void movePawn(float t)
+    public virtual void movePawn(float t)
     {
         pawnRig.position = Vector2.Lerp(orgPos, movePos, t);
     }
 
-    private void turnPawn(float t, bool isMove = true)
+    public virtual void turnPawn(float t, bool isMove = true)
     {
         float startRotation = (orgDir.y < 0.0f ? -1.0f : 1.0f) * Mathf.Acos(orgDir.x) * Mathf.Rad2Deg;
         float endRotation = isMove ? ((movePos - orgPos).y < 0.0f ? -1.0f : 1.0f) * Mathf.Acos((movePos - orgPos).normalized.x) * Mathf.Rad2Deg : (attackDir.y < 0.0f ? -1.0f : 1.0f) * Mathf.Acos(attackDir.x) * Mathf.Rad2Deg;
-        Debug.Log(endRotation);
         pawnRig.rotation = Mathf.Lerp(startRotation, endRotation, t);
     }
 
-    public void setMovePos(Vector2 mousePos)
+    public virtual void setMovePos(Vector2 mousePos)
     {
+        hasMove = true;
         movePos = mousePos;
+        GameManager.Instance.InterMan.InMoveControl = false;
         Debug.Log(gameObject.name + " Set Move Position at " + movePos);
     }
 
-    public void setAttackDir(Vector2 mousePos)
+    public virtual void setAttackDir(Vector2 mousePos, bool justTurn = false)
     {
-        hasAttack = true;
+        hasAttack = !justTurn;
+        hasTurn = justTurn;
         attackDir = (mousePos - movePos).normalized;
         GameManager.Instance.InterMan.InAttackControl = false;
+        GameManager.Instance.InterMan.InTurnControl = false;
         Debug.Log(gameObject.name + " Set attack Direction at " + attackDir);
+    }
+
+    public void attacked(int damage)
+    {
+        currHealth -= damage;
+        Debug.Log(name + " Taked " + damage + " Damage. Current Health: " + currHealth);
+        if (currHealth <= 0)
+        {
+            die();
+        }
+    }
+
+    public virtual int attackPower(PawnBehaviour attacker = null, PawnBehaviour target = null)
+    {
+        return classScriptObj.AttackPower;
+    }
+
+    public void die()
+    {
+        Debug.Log(name + "Has Died.");
+        GameManager.Instance.InterMan.removePawn(this);
+        //Destroy(gameObject);
+    }
+
+    public void init()
+    {
+        currHealth = classScriptObj.MaxHealth;
+        orgPos = pawnRig.position;
+        movePos = orgPos;
+        orgDir = new Vector2(Mathf.Cos(pawnRig.rotation * Mathf.Deg2Rad), Mathf.Sin(pawnRig.rotation * Mathf.Deg2Rad));
     }
 }
