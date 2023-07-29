@@ -138,7 +138,7 @@ public class PawnBehaviour : MonoBehaviour
     public virtual void setMovePos(Vector2 mousePos)
     {
         hasMove = true;
-        movePos = mousePos;
+        movePos = Vector2.Distance(pawnRig.position, mousePos) > classScriptObj.MoveDistance ? ((mousePos - pawnRig.position).normalized * classScriptObj.MoveDistance) + pawnRig.position : mousePos;
         GameManager.Instance.InterMan.InMoveControl = false;
         Debug.Log(gameObject.name + " Set Move Position at " + movePos);
     }
