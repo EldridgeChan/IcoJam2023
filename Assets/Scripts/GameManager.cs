@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private InteractionManager interMan;
     public InteractionManager InterMan { get { return interMan; } }
+    [SerializeField]
+    private GameDesignScriptableObject gameDesignScriptObj;
+    public GameDesignScriptableObject GameDesignScriptObj { get { return gameDesignScriptObj; } }
 
     private void Awake()
     {

@@ -23,10 +23,12 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            if (GameManager.Instance.InterMan.InAttackControl)
+            if (GameManager.Instance.InterMan.InAttackControl || GameManager.Instance.InterMan.InMoveControl || GameManager.Instance.InterMan.InTurnControl)
             {
+                Debug.Log((GameManager.Instance.InterMan.InAttackControl ? "Attack" : (GameManager.Instance.InterMan.InMoveControl ? "Move" : "Turn")) + " Control Deactivated");
                 GameManager.Instance.InterMan.InAttackControl = false;
-                Debug.Log("Attack Control Deactivated");
+                GameManager.Instance.InterMan.InMoveControl = false;
+                GameManager.Instance.InterMan.InTurnControl = false;
             }
             else
             {
@@ -39,6 +41,22 @@ public class InputManager : MonoBehaviour
             {
                 GameManager.Instance.InterMan.InAttackControl = true;
                 Debug.Log("Attack Control Activeated");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            if (GameManager.Instance.InterMan.SelectedPawn)
+            {
+                GameManager.Instance.InterMan.InTurnControl = true;
+                Debug.Log("Turn Control Activeated");
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (GameManager.Instance.InterMan.SelectedPawn)
+            {
+                GameManager.Instance.InterMan.InMoveControl = true;
+                Debug.Log("Move Control Activeated");
             }
         }
         if (Input.GetKeyDown(KeyCode.Space))
@@ -59,13 +77,22 @@ public class InputManager : MonoBehaviour
 
     private void pawnControl()
     {
-        if (!GameManager.Instance.InterMan.InAttackControl)
+        if (GameManager.Instance.InterMan.InAttackControl)
+        {
+            GameManager.Instance.InterMan.SelectedPawn.setAttackDir(mousePos);
+            
+        }
+        else if (GameManager.Instance.InterMan.InMoveControl)
         {
             GameManager.Instance.InterMan.SelectedPawn.setMovePos(mousePos);
         }
+        else if (GameManager.Instance.InterMan.InTurnControl)
+        {
+            GameManager.Instance.InterMan.SelectedPawn.setAttackDir(mousePos, true);
+        }
         else
         {
-            GameManager.Instance.InterMan.SelectedPawn.setAttackDir(mousePos);
+            trySelectPawn();
         }
     }
 }

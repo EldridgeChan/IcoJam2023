@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 4854748052407431372}
   - component: {fileID: 7374774137199449306}
   - component: {fileID: 1848956088433859396}
-  - component: {fileID: 2792131191795878112}
+  - component: {fileID: 6088116576420816965}
   m_Layer: 0
   m_Name: ScoutsPawn
   m_TagString: PlayerPawn
@@ -259,7 +259,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2792131191795878112
+--- !u!114 &6088116576420816965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,12 +268,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2169617963868169425}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 217b3557a5cd37242ada4c52834f6b65, type: 3}
+  m_Script: {fileID: 11500000, guid: 155661272f8e8294b989aceafed0e2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   classScriptObj: {fileID: 11400000, guid: 9014d0e4ad8f6174eb23049b65d9378d, type: 2}
-  pawnAnmt: {fileID: 4854748052407431372}
   pawnRig: {fileID: 7374774137199449306}
+  pawnAnmt: {fileID: 4854748052407431372}
+  meleeWeapon: {fileID: 7257364438974887251}
 --- !u!1 &3320694987246179367
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +453,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3762755296947098751}
   - component: {fileID: 2950867076795899351}
+  - component: {fileID: 8793550921534493840}
+  - component: {fileID: 3328995905284986208}
+  - component: {fileID: 7257364438974887251}
   m_Layer: 0
   m_Name: KinfeBlade
   m_TagString: Untagged
@@ -526,6 +530,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &8793550921534493840
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347380538092545396}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!70 &3328995905284986208
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347380538092545396}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.15}
+  m_Size: {x: 0.8, y: 0.9}
+  m_Direction: 0
+--- !u!114 &7257364438974887251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347380538092545396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef87888a4a378984d88f7d66d8c90c6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponParent: {fileID: 6088116576420816965}
 --- !u!1 &4520817650033787001
 GameObject:
   m_ObjectHideFlags: 0
