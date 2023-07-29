@@ -21,6 +21,7 @@ public class ArrowBehaviour : MonoBehaviour
         if (collision.CompareTag("PlayerPawn"))
         {
             collision.GetComponent<PawnBehaviour>().attacked(damage);
+            Destroy(gameObject);
         }
         else if (collision.CompareTag("Shield"))
         {
