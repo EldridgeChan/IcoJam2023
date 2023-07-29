@@ -12,4 +12,16 @@ public class OpenLink : MonoBehaviour
     {
         Application.OpenURL("https://www.instagram.com/nekoosoft.company/?igshid=ZGUzMzM3NWJiOQ==");
     }
+    public void OpenPage2()
+    {
+        Application.OpenURL("https://www.instagram.com/sol.thunder?igshid=MjEwN2lyYWYwYw==");
+    }
+    public void OpenItchIO()
+    {
+        Application.OpenURL("https://nekoosofterfannekoonam.itch.io/");
+    }
+    public void OpenItchIO2()
+    {
+        Application.OpenURL("https://solthunder.itch.io/");
+    }
 }

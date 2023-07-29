@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public void GoToMapMenu()
+    {
+        SceneManager.LoadScene("MapSelection");
+    }
     public void GoToDevMenu()
     {
         SceneManager.LoadScene("AboutUs");
