@@ -23,10 +23,12 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(1))
         {
-            if (GameManager.Instance.InterMan.InAttackControl)
+            if (GameManager.Instance.InterMan.InAttackControl || GameManager.Instance.InterMan.InMoveControl || GameManager.Instance.InterMan.InTurnControl)
             {
+                Debug.Log((GameManager.Instance.InterMan.InAttackControl ? "Attack" : (GameManager.Instance.InterMan.InMoveControl ? "Move" : "Turn")) + " Control Deactivated");
                 GameManager.Instance.InterMan.InAttackControl = false;
-                Debug.Log("Attack Control Deactivated");
+                GameManager.Instance.InterMan.InMoveControl = false;
+                GameManager.Instance.InterMan.InTurnControl = false;
             }
             else
             {
@@ -90,7 +92,7 @@ public class InputManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("No Control Activated");
+            trySelectPawn();
         }
     }
 }
