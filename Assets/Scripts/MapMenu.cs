@@ -21,5 +21,9 @@ public class MapMenu : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
+    public void goToHintMenu()
+    {
+        SceneManager.LoadScene("HintMenu");
+    }
 
 }

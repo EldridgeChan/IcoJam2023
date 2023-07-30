@@ -21,6 +21,18 @@ EditorBuildSettings:
     path: Assets/Scenes/SettingsMenu.unity
     guid: 53aa299aa0cf76a409b578b9560fde9c
   - enabled: 1
+    path: Assets/Scenes/HintMenu.unity
+    guid: ea166ecbc4c3bc64dbf3cd610650708f
+  - enabled: 1
+    path: Assets/Scenes/KnightMenu.unity
+    guid: 7b631f6106d677e49aa91a19b7835df1
+  - enabled: 1
+    path: Assets/Scenes/ArcherMenu.unity
+    guid: 71013bc57225e0d4daa2a4b1015e363a
+  - enabled: 1
+    path: Assets/Scenes/BanditMenu.unity
+    guid: 13a619b65bb5b1242b3ad086b8aaefa9
+  - enabled: 1
     path: Assets/Scenes/PlayGround1.unity
     guid: a921af35832d5cf449df24c3c30ed749
   - enabled: 1
