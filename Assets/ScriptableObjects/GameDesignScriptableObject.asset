@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c62609b24889cb4694162b1190edd72, type: 3}
   m_Name: GameDesignScriptableObject
   m_EditorClassIdentifier: 
+  ArcherPrefab: {fileID: 4100730998990731136, guid: e36701db25beccc4db6b2c2fca0eaab5, type: 3}
+  KnightPrefab: {fileID: 5057961331236998683, guid: eae614e4e105d334e862f247bff67ab9, type: 3}
+  ScoutPrefab: {fileID: 2169617963868169425, guid: 81113baa2ff1f6a459e7647bdd0a8f95, type: 3}
   ArrowShotTimeOffset: 1
   ArrowSpeed: 10
   ArrowMaxFlyTime: 8
@@ -22,3 +25,6 @@ MonoBehaviour:
   ScoutStrikeEndTimeOffset: 0.9
   ScoutCritAngleTolerant: 45
   ScoutCritDamageMultiplier: 2
+  ArcherEnemyPrefab: {fileID: 1106342421319886044, guid: 29030030243c33a45a997b71d13d3d9e, type: 3}
+  KnightEnemyPrefab: {fileID: 1583629513400549187, guid: 45bf5869605ce904bb18a1b75b2db86d, type: 3}
+  ScoutEnemyPrefab: {fileID: 5575408085775841591, guid: 161194099cf3f944a951b8552eb3e963, type: 3}

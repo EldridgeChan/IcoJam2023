@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerPawn
   - Shield
+  - EnemyPawn
   layers:
   - Default
   - TransparentFX

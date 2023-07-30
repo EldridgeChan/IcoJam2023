@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     private InteractionManager interMan;
     public InteractionManager InterMan { get { return interMan; } }
     [SerializeField]
+    private AITreeHead aiTree;
+    public AITreeHead AITree { get { return aiTree; } }
+    [SerializeField]
     private GameDesignScriptableObject gameDesignScriptObj;
     public GameDesignScriptableObject GameDesignScriptObj { get { return gameDesignScriptObj; } }
 
@@ -24,8 +27,7 @@ public class GameManager : MonoBehaviour
         {
             DestroyImmediate(gameObject);
         }
-        if (interMan == null) { interMan = GetComponent<InteractionManager>(); }
+        if (!interMan) { interMan = GetComponent<InteractionManager>(); }
+        if (!aiTree) { aiTree = GetComponent<AITreeHead>(); }
     }
-
-
 }
