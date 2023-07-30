@@ -13,6 +13,9 @@ public class PawnBehaviour : MonoBehaviour
     [SerializeField]
     private Animator pawnAnmt;
     public Animator PawnAnmt { get { return pawnAnmt; } }
+    [SerializeField]
+    private PawnHubController pawnHubCon;
+    public PawnHubController PawnHubCon { get { return pawnHubCon; } }
 
     private bool hasAttack = false;
     public bool HasAttack { get { return hasAttack; } }
@@ -169,6 +172,7 @@ public class PawnBehaviour : MonoBehaviour
         movePos = Vector2.Distance(pawnRig.position, mousePos) > classScriptObj.MoveDistance ? ((mousePos - pawnRig.position).normalized * classScriptObj.MoveDistance) + pawnRig.position : mousePos;
         movePos = new Vector2(Mathf.Clamp(movePos.x, -GameManager.Instance.GameDesignScriptObj.AreanaWidth, GameManager.Instance.GameDesignScriptObj.AreanaWidth), Mathf.Clamp(movePos.y, -GameManager.Instance.GameDesignScriptObj.AreanaHight, GameManager.Instance.GameDesignScriptObj.AreanaHight));
         GameManager.Instance.InterMan.InMoveControl = false;
+        pawnHubCon.openOptions(true);
 
         //Debug.Log(gameObject.name + " Set Move Position at " + movePos);
     }
@@ -180,6 +184,7 @@ public class PawnBehaviour : MonoBehaviour
         attackDir = (mousePos - movePos).normalized;
         GameManager.Instance.InterMan.InAttackControl = false;
         GameManager.Instance.InterMan.InTurnControl = false;
+        pawnHubCon.openOptions(true);
         //Debug.Log(gameObject.name + " Set attack Direction at " + attackDir);
     }
 
@@ -187,6 +192,7 @@ public class PawnBehaviour : MonoBehaviour
     {
         currHealth -= damage;
         //Debug.Log(name + " Taked " + damage + " Damage. Current Health: " + currHealth);
+        pawnHubCon.setHearts(currHealth);
         if (currHealth <= 0)
         {
             die();
@@ -205,16 +211,17 @@ public class PawnBehaviour : MonoBehaviour
         GameManager.Instance.InterMan.addDied(this);
     }
 
-    public void init()
-    {
-        currHealth = classScriptObj.MaxHealth;
-        orgPos = pawnRig.position;
-        movePos = orgPos;
-        orgDir = new Vector2(Mathf.Cos(pawnRig.rotation * Mathf.Deg2Rad), Mathf.Sin(pawnRig.rotation * Mathf.Deg2Rad));
-    }
-
     public Vector2 faceDir()
     {
         return new Vector2(Mathf.Cos(pawnRig.rotation * Mathf.Deg2Rad), Mathf.Sin(pawnRig.rotation * Mathf.Deg2Rad));
+    }
+
+    public void init()
+    {
+        currHealth = classScriptObj.MaxHealth;
+        pawnHubCon.setHearts(currHealth);
+        orgPos = pawnRig.position;
+        movePos = orgPos;
+        orgDir = new Vector2(Mathf.Cos(pawnRig.rotation * Mathf.Deg2Rad), Mathf.Sin(pawnRig.rotation * Mathf.Deg2Rad));
     }
 }

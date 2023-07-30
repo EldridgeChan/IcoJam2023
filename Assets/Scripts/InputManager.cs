@@ -22,10 +22,6 @@ public class InputManager : MonoBehaviour
 
     private void InputControl()
     {
-        if (GameManager.Instance.InterMan.CurrPhase == ActionPhases.ControlPhase)
-        {
-
-        }
         if (Input.GetMouseButtonDown(0))
         {
             if (!GameManager.Instance.InterMan.SelectedPawn)
@@ -41,10 +37,10 @@ public class InputManager : MonoBehaviour
         {
             if (GameManager.Instance.InterMan.InAttackControl || GameManager.Instance.InterMan.InMoveControl || GameManager.Instance.InterMan.InTurnControl)
             {
-                Debug.Log((GameManager.Instance.InterMan.InAttackControl ? "Attack" : (GameManager.Instance.InterMan.InMoveControl ? "Move" : "Turn")) + " Control Deactivated");
-                GameManager.Instance.InterMan.InAttackControl = false;
-                GameManager.Instance.InterMan.InMoveControl = false;
-                GameManager.Instance.InterMan.InTurnControl = false;
+                //Debug.Log((GameManager.Instance.InterMan.InAttackControl ? "Attack" : (GameManager.Instance.InterMan.InMoveControl ? "Move" : "Turn")) + " Control Deactivated");
+                GameManager.Instance.InterMan.setAttackControl(false);
+                GameManager.Instance.InterMan.setTurnControl(false);
+                GameManager.Instance.InterMan.setMoveControl(false);
             }
             else
             {
@@ -55,24 +51,24 @@ public class InputManager : MonoBehaviour
         {
             if (GameManager.Instance.InterMan.SelectedPawn)
             {
-                GameManager.Instance.InterMan.InAttackControl = true;
-                Debug.Log("Attack Control Activeated");
+                GameManager.Instance.InterMan.setAttackControl(true);
+                //Debug.Log("Attack Control Activeated");
             }
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
             if (GameManager.Instance.InterMan.SelectedPawn)
             {
-                GameManager.Instance.InterMan.InTurnControl = true;
-                Debug.Log("Turn Control Activeated");
+                GameManager.Instance.InterMan.setTurnControl(true);
+                //Debug.Log("Turn Control Activeated");
             }
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
             if (GameManager.Instance.InterMan.SelectedPawn)
             {
-                GameManager.Instance.InterMan.InMoveControl = true;
-                Debug.Log("Move Control Activeated");
+                GameManager.Instance.InterMan.setMoveControl(true);
+                //Debug.Log("Move Control Activeated");
             }
         }
     }

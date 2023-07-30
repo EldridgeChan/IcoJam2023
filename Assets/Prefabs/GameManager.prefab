@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1054844199627191271}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: EnemyPawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,8 +74,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 840669f8166df254fa2a14f9f0907625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testPlayerPawns:
-  - {fileID: 0}
+  testPlayerPawns: []
+  testEnemyPawns: []
 --- !u!114 &1054844199627191271
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -95,17 +95,17 @@ public class InteractionManager : MonoBehaviour
 
     public void playerWin()
     {
-
+        currPhase = ActionPhases.NonePhase;
     }
 
     public void actionFinishCallback()
     {
         finishCounter++;
-        Debug.Log(currPhase + " Action Finish Callback: " + finishCounter + "/" + (int)(playerPawns.Count + enemyPawns.Count));
+        //Debug.Log(currPhase + " Action Finish Callback: " + finishCounter + "/" + (int)(playerPawns.Count + enemyPawns.Count));
         if (finishCounter >= playerPawns.Count + enemyPawns.Count)
         {
             finishCounter = 0;
-            Debug.Log(currPhase + " Ended");
+            //Debug.Log(currPhase + " Ended");
             currPhase = currPhase + 1;
             if (currPhase == ActionPhases.MoveTurnPhase)
             {
@@ -124,16 +124,28 @@ public class InteractionManager : MonoBehaviour
             if (currPhase == ActionPhases.EndTurnPhase)
             {
                 deleteDiedPawn();
-                currPhase = ActionPhases.ControlPhase;
-                Debug.Log("Turn Ended");
+                if (currPhase != ActionPhases.NonePhase)
+                {
+                    currPhase = ActionPhases.ControlPhase;
+                }
+                /*Debug.Log("Turn Ended");
+                currPhase = ActionPhases.NonePhase;*/
             }
-            Debug.Log(currPhase + "Started");
-            phaseActionStart();
+            //Debug.Log(currPhase + "Started");
+            if (currPhase != ActionPhases.NonePhase)
+            {
+                phaseActionStart();
+            }
         }
     }
 
     public void startActionPhase()
     {
+        selectPawn(null);
+        inAttackControl = false;
+        inTurnControl = false;
+        inMoveControl = false;
+
         performAIActions(true);
         //performAIActions(false);
 
@@ -162,15 +174,20 @@ public class InteractionManager : MonoBehaviour
 
     public void selectPawn(PawnBehaviour pawn)
     {
-        selectedPawn = pawn;
-        if (pawn)
+        if (selectedPawn)
         {
-            Debug.Log(pawn.name + " Has been selected");
+            selectedPawn.PawnHubCon.selectedPawn(false);
         }
-        else
+        selectedPawn = pawn;
+        if (selectedPawn)
+        {
+            selectedPawn.PawnHubCon.selectedPawn(true);
+            //Debug.Log(pawn.name + " Has been selected");
+        }
+        /*else
         {
             Debug.Log("Pawn has been unselected");
-        }
+        }*/
     }
 
     private void performAIActions(bool toEnemy = true)
@@ -196,5 +213,32 @@ public class InteractionManager : MonoBehaviour
     public void setAIAction(AITreeHead.PawnAction action)
     {
         aiActions.Add(action);
+    }
+
+    public void setAttackControl(bool isOn)
+    {
+        if (selectedPawn)
+        {
+            InAttackControl = isOn;
+            selectedPawn.PawnHubCon.openOptions(!isOn);
+        }
+    }
+
+    public void setTurnControl(bool isOn)
+    {
+        if (selectedPawn)
+        {
+            inTurnControl = isOn;
+            selectedPawn.PawnHubCon.openOptions(!isOn);
+        }
+    }
+
+    public void setMoveControl(bool isOn)
+    {
+        if (selectedPawn)
+        {
+            InMoveControl = isOn;
+            selectedPawn.PawnHubCon.openOptions(!isOn);
+        }
     }
 }
