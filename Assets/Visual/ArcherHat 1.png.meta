@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c4339983027472a4aa7d50d89a520d80
+guid: 84c85cf52062c8f48a12311673d9190d
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -165,71 +165,15 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hexagon Flat-Top
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 16
-        width: 142
-        height: 226
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -65, y: 113}
-        - {x: -128, y: 4}
-        - {x: -128, y: -4}
-        - {x: -65, y: -113}
-        - {x: 65, y: -113}
-        - {x: 128, y: -4}
-        - {x: 128, y: 4}
-        - {x: 65, y: 113}
-      physicsShape:
-      - - {x: -64, y: 111}
-        - {x: -128, y: 0}
-        - {x: -64, y: -111}
-        - {x: 64, y: -111}
-        - {x: 128, y: 0}
-        - {x: 64, y: 111}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37fc5a28112c12620800000000000000
-      internalID: 2747690628134850419
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ArcherHat_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 127
-        width: 7
-        height: 2
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc829844b8924bf4fbc889476773f292
-      internalID: 1587977117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: ArcherHat_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 130
+        y: 131
         width: 256
         height: 110
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

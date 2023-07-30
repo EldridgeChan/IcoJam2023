@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: c4339983027472a4aa7d50d89a520d80
+guid: 71d1ae3b1fe1e7748b8dd948cd8aae33
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 2747690628134850419
-    second: Hexagon Flat-Top
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -40,23 +37,23 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 256
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 497, y: 28, z: 617, w: 50}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -68,10 +65,23 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -123,19 +133,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -165,69 +162,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Hexagon Flat-Top
+      name: 9d73510f-3d64-458c-908d-6d9e66ca57da.sketchpad_0
       rect:
         serializedVersion: 2
-        x: 114
-        y: 16
-        width: 142
-        height: 226
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -65, y: 113}
-        - {x: -128, y: 4}
-        - {x: -128, y: -4}
-        - {x: -65, y: -113}
-        - {x: 65, y: -113}
-        - {x: 128, y: -4}
-        - {x: 128, y: 4}
-        - {x: 65, y: 113}
-      physicsShape:
-      - - {x: -64, y: 111}
-        - {x: -128, y: 0}
-        - {x: -64, y: -111}
-        - {x: 64, y: -111}
-        - {x: 128, y: 0}
-        - {x: 64, y: 111}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 37fc5a28112c12620800000000000000
-      internalID: 2747690628134850419
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ArcherHat_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 127
-        width: 7
-        height: 2
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc829844b8924bf4fbc889476773f292
-      internalID: 1587977117
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ArcherHat_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 130
-        width: 256
-        height: 110
+        x: 305
+        y: 464
+        width: 11
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,40 +176,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8452aab614b91414487486783ee73d6e
-      internalID: 96258558
+      spriteID: 1db45767aab9f584d800c75e9bfe2d81
+      internalID: 768834615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 9d73510f-3d64-458c-908d-6d9e66ca57da.sketchpad_1
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 28
+        width: 806
+        height: 805
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f547a495a60f9104bae21ef6bceb23e5
+      internalID: -826865987
       vertices: []
       indices: 
       edges: []
       weights: []
     outline:
-    - - {x: -65, y: 113}
-      - {x: -128, y: 4}
-      - {x: -128, y: -4}
-      - {x: -65, y: -113}
-      - {x: 65, y: -113}
-      - {x: 128, y: -4}
-      - {x: 128, y: 4}
-      - {x: 65, y: 113}
-    physicsShape:
-    - - {x: -64, y: 111}
-      - {x: -128, y: 0}
-      - {x: -64, y: -111}
-      - {x: 64, y: -111}
-      - {x: 128, y: 0}
-      - {x: 64, y: 111}
+    - - {x: -960, y: -441.5}
+      - {x: 960, y: -441.5}
+      - {x: 960, y: 441.5}
+      - {x: -960, y: 441.5}
+    physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ArcherHat_0: 1587977117
-      ArcherHat_1: 96258558
-      Hexagon Flat-Top: 2747690628134850419
+      9d73510f-3d64-458c-908d-6d9e66ca57da.sketchpad_0: 768834615
+      9d73510f-3d64-458c-908d-6d9e66ca57da.sketchpad_1: -826865987
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

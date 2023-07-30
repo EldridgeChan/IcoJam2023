@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -596718271
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: -2
   m_Sprite: {fileID: 7482667652216324306, guid: b6d9bf7b43e8f6e499b80bd2f5079a15, type: 3}
   m_Color: {r: 0.36900002, g: 0.36900002, b: 0.36900002, a: 1}
@@ -122,6 +122,7 @@ Transform:
   m_Children:
   - {fileID: 153471639128812404}
   - {fileID: 7749428120065643036}
+  - {fileID: 827725852938647389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3050482760165181397
@@ -163,7 +164,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -596718271
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: 856a0d4d053a08745ae3b3118e71b2b8, type: 3}
   m_Color: {r: 0.2509804, g: 0.77254903, b: 0.3137255, a: 1}
@@ -274,6 +275,7 @@ MonoBehaviour:
   classScriptObj: {fileID: 11400000, guid: 9014d0e4ad8f6174eb23049b65d9378d, type: 2}
   pawnRig: {fileID: 7374774137199449306}
   pawnAnmt: {fileID: 4854748052407431372}
+  pawnHubCon: {fileID: 3191917224291926719}
   meleeWeapon: {fileID: 7257364438974887251}
 --- !u!1 &3320694987246179367
 GameObject:
@@ -346,7 +348,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -596718271
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 2db4f4e614da9884cafca768a32f6c1f, type: 3}
   m_Color: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 1}
@@ -430,7 +432,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -596718271
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 2db4f4e614da9884cafca768a32f6c1f, type: 3}
   m_Color: {r: 0.32941177, g: 0.32941177, b: 0.32941177, a: 1}
@@ -517,7 +519,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -596718271
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: -2
   m_Sprite: {fileID: 7482667652216324306, guid: 90e34c9bedea5154cb8f272faf10f04c, type: 3}
   m_Color: {r: 0.79829746, g: 0.84400004, b: 0.79589206, a: 1}
@@ -709,7 +711,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -596718271
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: b6d9bf7b43e8f6e499b80bd2f5079a15, type: 3}
   m_Color: {r: 0.70199996, g: 0.65517324, b: 0.53773195, a: 1}
@@ -722,3 +724,80 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &6862411623685056449
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 713079172759129661}
+    m_Modifications:
+    - target: {fileID: 3928691222112834609, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_Name
+      value: PawnHub
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8320357218249434494, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: parentTrans
+      value: 
+      objectReference: {fileID: 713079172759129661}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+--- !u!4 &827725852938647389 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+  m_PrefabInstance: {fileID: 6862411623685056449}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3191917224291926719 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8320357218249434494, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+  m_PrefabInstance: {fileID: 6862411623685056449}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6cedc94fca437745a939c765bf3adcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
