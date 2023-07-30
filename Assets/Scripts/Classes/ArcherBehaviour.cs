@@ -12,6 +12,7 @@ public class ArcherBehaviour : PawnBehaviour
     private Transform fakeArrowTrans;
 
     private bool arrowLoaded = true;
+    public bool ArrowLoaded { get { return arrowLoaded; } }
 
     private void Start()
     {

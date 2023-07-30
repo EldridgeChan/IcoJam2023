@@ -7,6 +7,7 @@ public class InteractionManager : MonoBehaviour
     ActionPhases currPhase = ActionPhases.NonePhase;
     private List<PawnBehaviour> playerPawns = new List<PawnBehaviour>();
     private List<PawnBehaviour> enemyPawns = new List<PawnBehaviour>();
+    private List<AITreeHead.PawnAction> aiActions = new List<AITreeHead.PawnAction>();
     private int finishCounter = 0;
 
     private PawnBehaviour selectedPawn = null;
@@ -111,5 +112,28 @@ public class InteractionManager : MonoBehaviour
         {
             Debug.Log("Pawn has been unselected");
         }
+    }
+
+    private void performAIActions(bool toEnemy = true)
+    {
+        for (int i = 0; i < (toEnemy ? enemyPawns : playerPawns).Count; i++)
+        {
+            PawnBehaviour pawn = (toEnemy ? enemyPawns : playerPawns)[i];
+            AITreeHead.PawnAction action = aiActions[i];
+
+            if (action.movePos != pawn.PawnRig.position)
+            {
+                pawn.setMovePos(action.movePos);
+            }
+            if (action.attackDir != Vector2.zero)
+            {
+                pawn.setAttackDir(pawn.PawnRig.position + action.attackDir, action.justTurn);
+            }
+        }
+    }
+
+    public void setAIAction(AITreeHead.PawnAction action)
+    {
+        aiActions.Add(action);
     }
 }

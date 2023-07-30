@@ -6,8 +6,10 @@ public class PawnBehaviour : MonoBehaviour
 {
     [SerializeField]
     private ClassAttributesScriptableObject classScriptObj;
+    public ClassAttributesScriptableObject ClassScriptObj { get { return classScriptObj; } }
     [SerializeField]
     private Rigidbody2D pawnRig;
+    public Rigidbody2D PawnRig { get { return pawnRig; } }
     [SerializeField]
     private Animator pawnAnmt;
     public Animator PawnAnmt { get { return pawnAnmt; } }
@@ -183,5 +185,10 @@ public class PawnBehaviour : MonoBehaviour
         orgPos = pawnRig.position;
         movePos = orgPos;
         orgDir = new Vector2(Mathf.Cos(pawnRig.rotation * Mathf.Deg2Rad), Mathf.Sin(pawnRig.rotation * Mathf.Deg2Rad));
+    }
+
+    public Vector2 faceDir()
+    {
+        return new Vector2(Mathf.Cos(pawnRig.rotation * Mathf.Deg2Rad), Mathf.Sin(pawnRig.rotation * Mathf.Deg2Rad));
     }
 }
