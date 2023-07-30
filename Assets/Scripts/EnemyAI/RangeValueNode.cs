@@ -58,7 +58,7 @@ public class RangeValueNode : AITreeNode
         int result = 0;
         foreach (PawnBehaviour oppoPawn in opponentPawns)
         {
-            if (Vector2.Distance(selfPawn.transform.position, oppoPawn.transform.position) < selfPawn.ClassScriptObj.MoveDistance + GameManager.Instance.GameDesignScriptObj.attackRangeOffset)
+            if (Vector2.Distance(selfPawn.transform.position, oppoPawn.transform.position) < selfPawn.ClassScriptObj.MoveDistance + GameManager.Instance.GameDesignScriptObj.AttackRangeOffset)
             {
                 result++;
             }
@@ -71,7 +71,7 @@ public class RangeValueNode : AITreeNode
         int result = 0;
         foreach (PawnBehaviour oppoPawn in opponentPawns)
         {
-            if (Vector2.Distance(selfPawn.transform.position, oppoPawn.transform.position) < oppoPawn.ClassScriptObj.MoveDistance + GameManager.Instance.GameDesignScriptObj.attackRangeOffset)
+            if (Vector2.Distance(selfPawn.transform.position, oppoPawn.transform.position) < oppoPawn.ClassScriptObj.MoveDistance + GameManager.Instance.GameDesignScriptObj.AttackRangeOffset)
             {
                 result++;
             }

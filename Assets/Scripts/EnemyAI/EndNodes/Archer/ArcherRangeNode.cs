@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcherRangeNode : MonoBehaviour
+public class ArcherRangeNode : AITreeNode
 {
-    // Start is called before the first frame update
-    void Start()
+    public ArcherRangeNode()
     {
-        
+        nextNodes = new List<AITreeNode>();
+        nextNodes.Add(new ReloadArcherNode());
+        nextNodes.Add(new TurretArcherNode());
+        nextNodes.Add(new SnippingArcherNode());
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool runAITree(PawnBehaviour selfPawn, List<PawnBehaviour> selfPawns, List<PawnBehaviour> opponentPawns)
     {
-        
+        foreach (AITreeNode node in nextNodes)
+        {
+            if (node.runAITree(selfPawn, selfPawns, opponentPawns))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

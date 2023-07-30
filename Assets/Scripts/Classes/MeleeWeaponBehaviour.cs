@@ -18,7 +18,7 @@ public class MeleeWeaponBehaviour : MonoBehaviour
         {
             getBlocked = true;
         }
-        if (attacking && !getBlocked && collision.CompareTag("PlayerPawn") && collision.transform != weaponParent.transform)
+        if (attacking && !getBlocked && (collision.CompareTag("PlayerPawn") || collision.CompareTag("EnemyPawn")) && collision.transform != weaponParent.transform)
         {
             attacked(collision.transform);
         }
@@ -41,7 +41,7 @@ public class MeleeWeaponBehaviour : MonoBehaviour
                 {
                     getBlocked = true;
                 }
-                else if (trans.CompareTag("PlayerPawn"))
+                else if (trans.CompareTag("PlayerPawn") || trans.CompareTag("EnemyPawn"))
                 {
                     hittedPawn.Add(trans);
                 }

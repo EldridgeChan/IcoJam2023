@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoutDefendsiveNode : MonoBehaviour
+public class ScoutDefendsiveNode : AITreeNode
 {
-    // Start is called before the first frame update
-    void Start()
+    public ScoutDefendsiveNode()
     {
-        
+        nextNodes = new List<AITreeNode>();
+        nextNodes.Add(new DodgeScoutNode());
     }
 
-    // Update is called once per frame
-    void Update()
+    public override bool runAITree(PawnBehaviour selfPawn, List<PawnBehaviour> selfPawns, List<PawnBehaviour> opponentPawns)
     {
-        
+        foreach (AITreeNode node in nextNodes)
+        {
+            if (node.runAITree(selfPawn, selfPawns, opponentPawns))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

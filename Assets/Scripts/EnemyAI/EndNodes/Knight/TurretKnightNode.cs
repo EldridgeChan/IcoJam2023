@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurretKnightNode : MonoBehaviour
+public class TurretKnightNode : AITreeNode
 {
-    // Start is called before the first frame update
-    void Start()
+    public override bool runAITree(PawnBehaviour selfPawn, List<PawnBehaviour> selfPawns, List<PawnBehaviour> opponentPawns)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        PawnBehaviour target = GameManager.Instance.AITree.closestPawn(selfPawn, opponentPawns);
+        GameManager.Instance.InterMan.setAIAction(new AITreeHead.PawnAction(selfPawn.PawnRig.position, target.PawnRig.position, true));
+        //Debug.Log(selfPawn.name + " Runs TurretKnightNode for Target: " + target);
+        return true;
     }
 }

@@ -9,7 +9,23 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (GameManager.Instance.InterMan.CurrPhase == ActionPhases.ControlPhase)
+        {
+            InputControl();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameManager.Instance.InterMan.startActionPhase();
+            Debug.Log("Action Phase Started");
+        }
+    }
 
+    private void InputControl()
+    {
+        if (GameManager.Instance.InterMan.CurrPhase == ActionPhases.ControlPhase)
+        {
+
+        }
         if (Input.GetMouseButtonDown(0))
         {
             if (!GameManager.Instance.InterMan.SelectedPawn)
@@ -58,11 +74,6 @@ public class InputManager : MonoBehaviour
                 GameManager.Instance.InterMan.InMoveControl = true;
                 Debug.Log("Move Control Activeated");
             }
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GameManager.Instance.InterMan.startActionPhase();
-            Debug.Log("Action Phase Started");
         }
     }
 

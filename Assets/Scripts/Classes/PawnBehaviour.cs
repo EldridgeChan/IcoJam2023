@@ -51,9 +51,13 @@ public class PawnBehaviour : MonoBehaviour
 
     private void phaseAction()
     {
-        moveT = Mathf.Clamp01(moveT + Time.fixedDeltaTime);
+        moveT = Mathf.Clamp01(moveT + Time.fixedDeltaTime / phaseTimerScale());
         switch (currPhase)
         {
+            case ActionPhases.ControlPhase:
+                Invoke("actionFinishCallback", GameManager.Instance.GameDesignScriptObj.ControlTimePeriod);
+                moveT = 1.0f;
+                break;
             case ActionPhases.MoveTurnPhase:
                 if (hasMove)
                 {
@@ -76,6 +80,10 @@ public class PawnBehaviour : MonoBehaviour
                 attack();
                 moveT = 1.0f;
                 break;
+            case ActionPhases.DiePhase:
+                Invoke("actionFinishCallback", GameManager.Instance.GameDesignScriptObj.DieTimePeriod);
+                moveT = 1.0f;
+                break;
             default:
                 Debug.Log("ERROR: Unexpected Phase: " + currPhase);
                 break;
@@ -90,10 +98,26 @@ public class PawnBehaviour : MonoBehaviour
                 movePos = pawnRig.position;
                 hasMove = false;
             }
-            if (currPhase != ActionPhases.AttackPhase)
+            if (currPhase != ActionPhases.AttackPhase && currPhase != ActionPhases.DiePhase && currPhase != ActionPhases.ControlPhase)
             {
                 GameManager.Instance.InterMan.actionFinishCallback();
             }
+        }
+    }
+
+    private float phaseTimerScale()
+    {
+        switch (currPhase)
+        {
+            case ActionPhases.MoveTurnPhase:
+                return GameManager.Instance.GameDesignScriptObj.MoveTurnTimePeriod;
+            case ActionPhases.MovingPhase:
+                return GameManager.Instance.GameDesignScriptObj.MoveTimePeriod;
+            case ActionPhases.AttackTurnPhase:
+                return GameManager.Instance.GameDesignScriptObj.AttackTurnTimePeriod;
+            default:
+                return 1.0f;
+
         }
     }
 
@@ -117,7 +141,7 @@ public class PawnBehaviour : MonoBehaviour
             pawnAnmt.SetTrigger("Attack");
             hasAttack = false;
         }
-        Invoke("actionFinishCallback", 5.0f);
+        Invoke("actionFinishCallback", GameManager.Instance.GameDesignScriptObj.AttackTimePeriod);
     }
 
     private void actionFinishCallback()
@@ -143,8 +167,10 @@ public class PawnBehaviour : MonoBehaviour
         hasAttack = false;
         hasTurn = false;
         movePos = Vector2.Distance(pawnRig.position, mousePos) > classScriptObj.MoveDistance ? ((mousePos - pawnRig.position).normalized * classScriptObj.MoveDistance) + pawnRig.position : mousePos;
+        movePos = new Vector2(Mathf.Clamp(movePos.x, -GameManager.Instance.GameDesignScriptObj.AreanaWidth, GameManager.Instance.GameDesignScriptObj.AreanaWidth), Mathf.Clamp(movePos.y, -GameManager.Instance.GameDesignScriptObj.AreanaHight, GameManager.Instance.GameDesignScriptObj.AreanaHight));
         GameManager.Instance.InterMan.InMoveControl = false;
-        Debug.Log(gameObject.name + " Set Move Position at " + movePos);
+
+        //Debug.Log(gameObject.name + " Set Move Position at " + movePos);
     }
 
     public virtual void setAttackDir(Vector2 mousePos, bool justTurn = false)
@@ -154,13 +180,13 @@ public class PawnBehaviour : MonoBehaviour
         attackDir = (mousePos - movePos).normalized;
         GameManager.Instance.InterMan.InAttackControl = false;
         GameManager.Instance.InterMan.InTurnControl = false;
-        Debug.Log(gameObject.name + " Set attack Direction at " + attackDir);
+        //Debug.Log(gameObject.name + " Set attack Direction at " + attackDir);
     }
 
     public void attacked(int damage)
     {
         currHealth -= damage;
-        Debug.Log(name + " Taked " + damage + " Damage. Current Health: " + currHealth);
+        //Debug.Log(name + " Taked " + damage + " Damage. Current Health: " + currHealth);
         if (currHealth <= 0)
         {
             die();
@@ -174,9 +200,9 @@ public class PawnBehaviour : MonoBehaviour
 
     public void die()
     {
-        Debug.Log(name + "Has Died.");
+        //Debug.Log(name + "Has Died.");
         GameManager.Instance.InterMan.removePawn(this);
-        //Destroy(gameObject);
+        GameManager.Instance.InterMan.addDied(this);
     }
 
     public void init()
