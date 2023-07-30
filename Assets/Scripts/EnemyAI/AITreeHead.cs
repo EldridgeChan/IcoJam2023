@@ -9,6 +9,11 @@ public class AITreeHead : MonoBehaviour
 
     private AITreeNode head;
 
+    private void Start()
+    {
+        head = new RangeValueNode();
+    }
+
     public void runAI(List<PawnBehaviour> selfPawns, List<PawnBehaviour> opponentPawns)
     {
         foreach (PawnBehaviour selfPawn in selfPawns)
@@ -16,10 +21,6 @@ public class AITreeHead : MonoBehaviour
             if (!head.runAITree(selfPawn, selfPawns , opponentPawns))
             {
                 Debug.Log("ERROR: AI Tree Not Returning true");
-            }
-            else
-            {
-                Debug.Log("Tree Runs successfully for " + selfPawn.name);
             }
         }
     }
@@ -96,6 +97,19 @@ public class AITreeHead : MonoBehaviour
         foreach (PawnBehaviour pawn in opponentPawn)
         {
             if (pawn is ScoutBehaviour)
+            {
+                result.Add(pawn);
+            }
+        }
+        return result;
+    }
+
+    public List<PawnBehaviour> allInRange(PawnBehaviour selfPawn, List<PawnBehaviour> opponentPawn)
+    {
+        List<PawnBehaviour> result = new List<PawnBehaviour>();
+        foreach (PawnBehaviour pawn in opponentPawn)
+        {
+            if (Vector2.Distance(selfPawn.PawnRig.position, pawn.PawnRig.position) < selfPawn.ClassScriptObj.MoveDistance)
             {
                 result.Add(pawn);
             }

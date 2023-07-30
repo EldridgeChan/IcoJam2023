@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class InteractionManager : MonoBehaviour
 {
-    ActionPhases currPhase = ActionPhases.NonePhase;
+    private ActionPhases currPhase = ActionPhases.NonePhase;
+    public ActionPhases CurrPhase { get { return currPhase; } }
     private List<PawnBehaviour> playerPawns = new List<PawnBehaviour>();
     private List<PawnBehaviour> enemyPawns = new List<PawnBehaviour>();
+    private List<PawnBehaviour> DiedPawns = new List<PawnBehaviour>();
     private List<AITreeHead.PawnAction> aiActions = new List<AITreeHead.PawnAction>();
     private int finishCounter = 0;
 
@@ -21,12 +23,18 @@ public class InteractionManager : MonoBehaviour
 
     [SerializeField]
     private PawnBehaviour[] testPlayerPawns;
+    [SerializeField]
+    private PawnBehaviour[] testEnemyPawns;
 
     private void Start()
     {
         foreach (PawnBehaviour pawn in testPlayerPawns)
         {
             playerPawns.Add(pawn);
+        }
+        foreach (PawnBehaviour pawn in testEnemyPawns)
+        {
+            enemyPawns.Add(pawn);
         }
     }
 
@@ -54,6 +62,42 @@ public class InteractionManager : MonoBehaviour
         }
     }
 
+    public void addDied(PawnBehaviour pawn)
+    {
+        DiedPawns.Add(pawn);
+    }
+
+    public void deleteDiedPawn()
+    {
+        if (DiedPawns.Count <= 0)
+        {
+            return;
+        }
+        for (int i = DiedPawns.Count - 1; i >= 0; i--)
+        {
+            Destroy(DiedPawns[i].gameObject);
+        }
+        DiedPawns.Clear();
+        if (enemyPawns.Count <= 0)
+        {
+            playerWin();
+        }
+        else if (playerPawns.Count <= 0)
+        {
+            playerLost();
+        }
+    }
+
+    public void playerLost()
+    {
+
+    }
+
+    public void playerWin()
+    {
+
+    }
+
     public void actionFinishCallback()
     {
         finishCounter++;
@@ -63,24 +107,39 @@ public class InteractionManager : MonoBehaviour
             finishCounter = 0;
             Debug.Log(currPhase + " Ended");
             currPhase = currPhase + 1;
+            if (currPhase == ActionPhases.MoveTurnPhase)
+            {
+                selectedPawn = null;
+                InAttackControl = false;
+                InMoveControl = false;
+                InTurnControl = false;
+            }
+            if (currPhase == ActionPhases.DiePhase)
+            {
+                foreach (PawnBehaviour pawn in DiedPawns)
+                {
+                    pawn.PawnAnmt.SetTrigger("Die");
+                }
+            }
             if (currPhase == ActionPhases.EndTurnPhase)
             {
-                Debug.Log("All phase Ended");
-                currPhase = ActionPhases.NonePhase;
+                deleteDiedPawn();
+                currPhase = ActionPhases.ControlPhase;
+                Debug.Log("Turn Ended");
             }
-            else
-            {
-                Debug.Log(currPhase + "Started");
-                phaseActionStart();
-            }
+            Debug.Log(currPhase + "Started");
+            phaseActionStart();
         }
     }
 
     public void startActionPhase()
     {
+        performAIActions(true);
+        //performAIActions(false);
+
         if (currPhase == ActionPhases.NonePhase)
         {
-            currPhase = ActionPhases.MoveTurnPhase;
+            currPhase = ActionPhases.ControlPhase;
             phaseActionStart();
         }
         else
@@ -116,6 +175,7 @@ public class InteractionManager : MonoBehaviour
 
     private void performAIActions(bool toEnemy = true)
     {
+        GameManager.Instance.AITree.runAI(toEnemy ? enemyPawns : playerPawns, toEnemy ? playerPawns: enemyPawns);
         for (int i = 0; i < (toEnemy ? enemyPawns : playerPawns).Count; i++)
         {
             PawnBehaviour pawn = (toEnemy ? enemyPawns : playerPawns)[i];
@@ -127,9 +187,10 @@ public class InteractionManager : MonoBehaviour
             }
             if (action.attackDir != Vector2.zero)
             {
-                pawn.setAttackDir(pawn.PawnRig.position + action.attackDir, action.justTurn);
+                pawn.setAttackDir(action.attackDir, action.justTurn);
             }
         }
+        aiActions.Clear();
     }
 
     public void setAIAction(AITreeHead.PawnAction action)

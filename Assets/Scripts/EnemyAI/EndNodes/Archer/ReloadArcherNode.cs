@@ -9,6 +9,7 @@ public class ReloadArcherNode : AITreeNode
         if (!(selfPawn as ArcherBehaviour).ArrowLoaded)
         {
             GameManager.Instance.InterMan.setAIAction(new AITreeHead.PawnAction(selfPawn.PawnRig.position, selfPawn.PawnRig.position + Vector2.right, false));
+            //Debug.Log(selfPawn.name + " Runs ReloadArcherNode");
         }
         return !(selfPawn as ArcherBehaviour).ArrowLoaded;
     }

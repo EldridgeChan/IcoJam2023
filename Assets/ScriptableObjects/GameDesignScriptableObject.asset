@@ -28,3 +28,19 @@ MonoBehaviour:
   ArcherEnemyPrefab: {fileID: 1106342421319886044, guid: 29030030243c33a45a997b71d13d3d9e, type: 3}
   KnightEnemyPrefab: {fileID: 1583629513400549187, guid: 45bf5869605ce904bb18a1b75b2db86d, type: 3}
   ScoutEnemyPrefab: {fileID: 5575408085775841591, guid: 161194099cf3f944a951b8552eb3e963, type: 3}
+  AttackRangeOffset: 1
+  ArcherMinMove: 0.8
+  KnightMaxMove: 0.8
+  AttackDefendRangeMul: 1.5
+  BackAttackRangeMul: 1.5
+  BackAttackMaxMove: 0.2
+  AimBackProbability: 0.8
+  dodgeAngle: 45
+  ScoutMinMove: 0.8
+  SneakAngle: 20
+  MoveTurnTimePeriod: 1
+  MoveTimePeriod: 1
+  AttackTurnTimePeriod: 1
+  AttackTimePeriod: 4.5
+  DieTimePeriod: 2
+  ControlTimePeriod: 3
