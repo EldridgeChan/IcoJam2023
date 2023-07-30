@@ -11,6 +11,7 @@ public class InteractionManager : MonoBehaviour
     private List<PawnBehaviour> DiedPawns = new List<PawnBehaviour>();
     private List<AITreeHead.PawnAction> aiActions = new List<AITreeHead.PawnAction>();
     private int finishCounter = 0;
+    private int turnNumber = 0;
 
     private PawnBehaviour selectedPawn = null;
     public PawnBehaviour SelectedPawn { get { return selectedPawn; } }
@@ -23,8 +24,8 @@ public class InteractionManager : MonoBehaviour
 
     [SerializeField]
     private PawnBehaviour[] testPlayerPawns;
-    [SerializeField]
-    private PawnBehaviour[] testEnemyPawns;
+    /*[SerializeField]
+    private PawnBehaviour[] testEnemyPawns;*/
 
     private void Start()
     {
@@ -32,10 +33,11 @@ public class InteractionManager : MonoBehaviour
         {
             playerPawns.Add(pawn);
         }
+        /*
         foreach (PawnBehaviour pawn in testEnemyPawns)
         {
             enemyPawns.Add(pawn);
-        }
+        }*/
     }
 
     public void addPawn(PawnBehaviour pawn, bool isPlayerPawn)
@@ -95,7 +97,7 @@ public class InteractionManager : MonoBehaviour
 
     public void playerWin()
     {
-        currPhase = ActionPhases.NonePhase;
+        currPhase = ActionPhases.EndGamePhase;
     }
 
     public void actionFinishCallback()
@@ -109,7 +111,7 @@ public class InteractionManager : MonoBehaviour
             currPhase = currPhase + 1;
             if (currPhase == ActionPhases.MoveTurnPhase)
             {
-                selectedPawn = null;
+                selectPawn(null);
                 InAttackControl = false;
                 InMoveControl = false;
                 InTurnControl = false;
@@ -124,23 +126,29 @@ public class InteractionManager : MonoBehaviour
             if (currPhase == ActionPhases.EndTurnPhase)
             {
                 deleteDiedPawn();
-                if (currPhase != ActionPhases.NonePhase)
+                if (currPhase != ActionPhases.EndGamePhase)
                 {
-                    currPhase = ActionPhases.ControlPhase;
+                    currPhase = ActionPhases.NonePhase;
+                    startActionPhase();
                 }
                 /*Debug.Log("Turn Ended");
                 currPhase = ActionPhases.NonePhase;*/
             }
+            GameManager.Instance.CanvasCon.setPhase(currPhase);
             //Debug.Log(currPhase + "Started");
-            if (currPhase != ActionPhases.NonePhase)
+            if (currPhase != ActionPhases.EndGamePhase && currPhase != ActionPhases.ControlPhase)
             {
+
                 phaseActionStart();
             }
         }
     }
-
+    
     public void startActionPhase()
     {
+        turnNumber++;
+        GameManager.Instance.CanvasCon.setTurnNumber(turnNumber);
+        GameManager.Instance.CanvasCon.setBattleMessage(true);
         selectPawn(null);
         inAttackControl = false;
         inTurnControl = false;
@@ -152,6 +160,7 @@ public class InteractionManager : MonoBehaviour
         if (currPhase == ActionPhases.NonePhase)
         {
             currPhase = ActionPhases.ControlPhase;
+            GameManager.Instance.CanvasCon.startTimer();
             phaseActionStart();
         }
         else
@@ -219,7 +228,9 @@ public class InteractionManager : MonoBehaviour
     {
         if (selectedPawn)
         {
-            InAttackControl = isOn;
+            inAttackControl = isOn;
+            inTurnControl = false;
+            inMoveControl = false;
             selectedPawn.PawnHubCon.openOptions(!isOn);
         }
     }
@@ -229,6 +240,8 @@ public class InteractionManager : MonoBehaviour
         if (selectedPawn)
         {
             inTurnControl = isOn;
+            inAttackControl = false;
+            inMoveControl = false;
             selectedPawn.PawnHubCon.openOptions(!isOn);
         }
     }
@@ -237,7 +250,9 @@ public class InteractionManager : MonoBehaviour
     {
         if (selectedPawn)
         {
-            InMoveControl = isOn;
+            inMoveControl = isOn;
+            inAttackControl = false;
+            inTurnControl = false;
             selectedPawn.PawnHubCon.openOptions(!isOn);
         }
     }

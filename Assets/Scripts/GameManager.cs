@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameDesignScriptableObject gameDesignScriptObj;
     public GameDesignScriptableObject GameDesignScriptObj { get { return gameDesignScriptObj; } }
+    [SerializeField]
+    private OverlayCanvasController canvasCon;
+    public OverlayCanvasController CanvasCon { get { return canvasCon; } }
 
     private void Awake()
     {
