@@ -7,35 +7,41 @@ public class InteractionManager : MonoBehaviour
     private ActionPhases currPhase = ActionPhases.NonePhase;
     public ActionPhases CurrPhase { get { return currPhase; } }
     private List<PawnBehaviour> playerPawns = new List<PawnBehaviour>();
+    public List<PawnBehaviour> PlayerPawns { get { return playerPawns; } }
     private List<PawnBehaviour> enemyPawns = new List<PawnBehaviour>();
     private List<PawnBehaviour> DiedPawns = new List<PawnBehaviour>();
     private List<AITreeHead.PawnAction> aiActions = new List<AITreeHead.PawnAction>();
+    public List<AITreeHead.PawnAction> AIActions { get { return aiActions; } }
     private int finishCounter = 0;
+    private int turnNumber = 0;
 
     private PawnBehaviour selectedPawn = null;
-    public PawnBehaviour SelectedPawn { get { return selectedPawn; } }
+    public PawnBehaviour SelectedPawn { get { return selectedPawn; } set { selectedPawn = value; } }
     private bool inAttackControl = false;
     public bool InAttackControl { get { return inAttackControl; } set { inAttackControl = value; } }
     private bool inTurnControl = false;
     public bool InTurnControl { get { return inTurnControl; } set { inTurnControl = value; } }
     private bool inMoveControl = false;
     public bool InMoveControl { get { return inMoveControl; } set { inMoveControl = value; } }
+    private bool inPawnManagment = false;
+    public bool InPawnManagment { get { return inPawnManagment; } set { inPawnManagment = value; } }
 
-    [SerializeField]
-    private PawnBehaviour[] testPlayerPawns;
-    [SerializeField]
-    private PawnBehaviour[] testEnemyPawns;
+    /*[SerializeField]
+    private PawnBehaviour[] testPlayerPawns;*/
+    /*[SerializeField]
+    private PawnBehaviour[] testEnemyPawns;*/
 
     private void Start()
     {
-        foreach (PawnBehaviour pawn in testPlayerPawns)
+        /*foreach (PawnBehaviour pawn in testPlayerPawns)
         {
             playerPawns.Add(pawn);
-        }
+        }*/
+        /*
         foreach (PawnBehaviour pawn in testEnemyPawns)
         {
             enemyPawns.Add(pawn);
-        }
+        }*/
     }
 
     public void addPawn(PawnBehaviour pawn, bool isPlayerPawn)
@@ -43,6 +49,7 @@ public class InteractionManager : MonoBehaviour
         if (pawn)
         {
             (isPlayerPawn ? playerPawns : enemyPawns).Add(pawn);
+            GameManager.Instance.CanvasCon.setPawnNum();
         }
         else
         {
@@ -55,6 +62,7 @@ public class InteractionManager : MonoBehaviour
         if (pawn)
         {
             (pawn.CompareTag("PlayerPawn") ? playerPawns : enemyPawns).Remove(pawn);
+            GameManager.Instance.CanvasCon.setPawnNum();
         }
         else
         {
@@ -90,12 +98,15 @@ public class InteractionManager : MonoBehaviour
 
     public void playerLost()
     {
+        currPhase = ActionPhases.EndGamePhase;
+        GameManager.Instance.CanvasCon.playerLose();
 
     }
 
     public void playerWin()
     {
-        currPhase = ActionPhases.NonePhase;
+        currPhase = ActionPhases.EndGamePhase;
+        GameManager.Instance.CanvasCon.playerWin();
     }
 
     public void actionFinishCallback()
@@ -109,7 +120,7 @@ public class InteractionManager : MonoBehaviour
             currPhase = currPhase + 1;
             if (currPhase == ActionPhases.MoveTurnPhase)
             {
-                selectedPawn = null;
+                selectPawn(null);
                 InAttackControl = false;
                 InMoveControl = false;
                 InTurnControl = false;
@@ -124,23 +135,28 @@ public class InteractionManager : MonoBehaviour
             if (currPhase == ActionPhases.EndTurnPhase)
             {
                 deleteDiedPawn();
-                if (currPhase != ActionPhases.NonePhase)
+                if (currPhase != ActionPhases.EndGamePhase)
                 {
-                    currPhase = ActionPhases.ControlPhase;
+                    currPhase = ActionPhases.NonePhase;
+                    startActionPhase();
                 }
                 /*Debug.Log("Turn Ended");
                 currPhase = ActionPhases.NonePhase;*/
             }
+            GameManager.Instance.CanvasCon.setPhase(currPhase);
             //Debug.Log(currPhase + "Started");
-            if (currPhase != ActionPhases.NonePhase)
+            if (currPhase != ActionPhases.EndGamePhase && currPhase != ActionPhases.ControlPhase)
             {
+
                 phaseActionStart();
             }
         }
     }
-
+    
     public void startActionPhase()
     {
+        turnNumber++;
+        GameManager.Instance.CanvasCon.setTurnNumber(turnNumber);
         selectPawn(null);
         inAttackControl = false;
         inTurnControl = false;
@@ -152,6 +168,7 @@ public class InteractionManager : MonoBehaviour
         if (currPhase == ActionPhases.NonePhase)
         {
             currPhase = ActionPhases.ControlPhase;
+            GameManager.Instance.CanvasCon.startTimer();
             phaseActionStart();
         }
         else
@@ -219,7 +236,9 @@ public class InteractionManager : MonoBehaviour
     {
         if (selectedPawn)
         {
-            InAttackControl = isOn;
+            inAttackControl = isOn;
+            inTurnControl = false;
+            inMoveControl = false;
             selectedPawn.PawnHubCon.openOptions(!isOn);
         }
     }
@@ -229,6 +248,8 @@ public class InteractionManager : MonoBehaviour
         if (selectedPawn)
         {
             inTurnControl = isOn;
+            inAttackControl = false;
+            inMoveControl = false;
             selectedPawn.PawnHubCon.openOptions(!isOn);
         }
     }
@@ -237,8 +258,67 @@ public class InteractionManager : MonoBehaviour
     {
         if (selectedPawn)
         {
-            InMoveControl = isOn;
+            inMoveControl = isOn;
+            inAttackControl = false;
+            inTurnControl = false;
             selectedPawn.PawnHubCon.openOptions(!isOn);
+        }
+    }
+
+    public void moveFakePawn(Vector3 mousePos)
+    {
+        if (selectedPawn 
+            && Mathf.Abs(mousePos.y) < GameManager.Instance.GameDesignScriptObj.EnemySpawnY + 0.5f
+            && mousePos.x < -0.5f
+            && mousePos.x > -GameManager.Instance.GameDesignScriptObj.EnemySpawnMaxX - 0.5f)
+        {
+            selectedPawn.transform.position = new Vector2((int)(mousePos.x - 0.5f), (int)(mousePos.y + (mousePos.y == 0 ? 0 : mousePos.y < 0 ? -0.5f : 0.5f)));
+        }
+        else
+        {
+            selectedPawn.transform.position = new Vector2(mousePos.x, mousePos.y);
+        }
+    }
+
+    public void placeFakePawn(Vector3 mousePos)
+    {
+        if (Mathf.Abs(mousePos.y) < GameManager.Instance.GameDesignScriptObj.EnemySpawnY + 0.5f
+            && mousePos.x < -0.5f
+            && mousePos.x > -GameManager.Instance.GameDesignScriptObj.EnemySpawnMaxX - 0.5f
+            && playerPawns.Count < GameManager.Instance.GameDesignScriptObj.MaxPawn)
+        {
+            if (!hasPawnAlready())
+            {
+                addPawn(SelectedPawn, true);
+                selectedPawn = null;
+            }
+        }
+    }
+
+    public bool hasPawnAlready()
+    {
+        foreach (PawnBehaviour pawn in playerPawns)
+        {
+            if (pawn.transform.position == selectedPawn.transform.position)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void pickUpFakePawn(PawnBehaviour pawn)
+    {
+        removePawn(pawn);
+        selectedPawn = pawn;
+    }
+
+    public void trashFakePawn()
+    {
+        if (selectedPawn)
+        {
+            Destroy(selectedPawn.gameObject);
+            selectedPawn = null;
         }
     }
 }

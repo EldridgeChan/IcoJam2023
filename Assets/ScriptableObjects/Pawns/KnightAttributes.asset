@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb8a8fdbc8829c44a73df80a2fe7397, type: 3}
   m_Name: KnightAttributes
   m_EditorClassIdentifier: 
-  MaxHealth: 5
+  MaxHealth: 4
   AttackPower: 1
   MoveDistance: 2

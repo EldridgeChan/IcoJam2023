@@ -50,4 +50,9 @@ public class GameDesignScriptableObject : ScriptableObject
     public float ControlTimePeriod = 3.0f;
     public float AreanaWidth = 8.5f;
     public float AreanaHight = 4.5f;
+
+    [Header("Spawn Attributes")]
+    public int EnemySpawnMaxX = 8;
+    public int EnemySpawnY = 4;
+    public int MaxPawn = 6;
 }

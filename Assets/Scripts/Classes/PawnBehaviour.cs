@@ -172,8 +172,6 @@ public class PawnBehaviour : MonoBehaviour
         movePos = Vector2.Distance(pawnRig.position, mousePos) > classScriptObj.MoveDistance ? ((mousePos - pawnRig.position).normalized * classScriptObj.MoveDistance) + pawnRig.position : mousePos;
         movePos = new Vector2(Mathf.Clamp(movePos.x, -GameManager.Instance.GameDesignScriptObj.AreanaWidth, GameManager.Instance.GameDesignScriptObj.AreanaWidth), Mathf.Clamp(movePos.y, -GameManager.Instance.GameDesignScriptObj.AreanaHight, GameManager.Instance.GameDesignScriptObj.AreanaHight));
         GameManager.Instance.InterMan.InMoveControl = false;
-        pawnHubCon.openOptions(true);
-
         //Debug.Log(gameObject.name + " Set Move Position at " + movePos);
     }
 
@@ -184,7 +182,6 @@ public class PawnBehaviour : MonoBehaviour
         attackDir = (mousePos - movePos).normalized;
         GameManager.Instance.InterMan.InAttackControl = false;
         GameManager.Instance.InterMan.InTurnControl = false;
-        pawnHubCon.openOptions(true);
         //Debug.Log(gameObject.name + " Set attack Direction at " + attackDir);
     }
 

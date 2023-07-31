@@ -43,4 +43,9 @@ MonoBehaviour:
   AttackTurnTimePeriod: 1
   AttackTimePeriod: 4.5
   DieTimePeriod: 2
-  ControlTimePeriod: 3
+  ControlTimePeriod: 6
+  AreanaWidth: 8.5
+  AreanaHight: 4.5
+  EnemySpawnMaxX: 8
+  EnemySpawnY: 4
+  MaxPawn: 4
