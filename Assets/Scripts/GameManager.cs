@@ -10,22 +10,24 @@ public class GameManager : MonoBehaviour
     private InteractionManager interMan;
     public InteractionManager InterMan { get { return interMan; } }
     [SerializeField]
+    private AITreeHead aiTree;
+    public AITreeHead AITree { get { return aiTree; } }
+    [SerializeField]
     private GameDesignScriptableObject gameDesignScriptObj;
     public GameDesignScriptableObject GameDesignScriptObj { get { return gameDesignScriptObj; } }
+    [SerializeField]
+    private OverlayCanvasController canvasCon;
+    public OverlayCanvasController CanvasCon { get { return canvasCon; } }
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);    
         }
-        else
-        {
-            DestroyImmediate(gameObject);
-        }
-        if (interMan == null) { interMan = GetComponent<InteractionManager>(); }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+        if (!interMan) { interMan = GetComponent<InteractionManager>(); }
+        if (!aiTree) { aiTree = GetComponent<AITreeHead>(); }
     }
-
-
 }

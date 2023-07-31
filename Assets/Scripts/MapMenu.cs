@@ -7,19 +7,23 @@ public class MapMenu : MonoBehaviour
 {
     public void OpenPlayGround1()
     {
-        SceneManager.LoadScene("PlayGround1");
+        SceneManager.LoadScene(8);
     }
     public void OpenPlayGround2()
     {
-        SceneManager.LoadScene("PlayGround2");
+        SceneManager.LoadScene(9);
     }
     public void OpenPlayGround3()
     {
-        SceneManager.LoadScene("PlayGround3");
+        SceneManager.LoadScene(10);
     }
     public void backToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+    public void goToHintMenu()
+    {
+        SceneManager.LoadScene("HintMenu");
     }
 
 }

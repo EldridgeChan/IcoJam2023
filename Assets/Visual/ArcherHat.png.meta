@@ -208,7 +208,7 @@ TextureImporter:
         width: 7
         height: 2
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -216,6 +216,27 @@ TextureImporter:
       bones: []
       spriteID: fc829844b8924bf4fbc889476773f292
       internalID: 1587977117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ArcherHat_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 130
+        width: 256
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8452aab614b91414487486783ee73d6e
+      internalID: 96258558
       vertices: []
       indices: 
       edges: []
@@ -246,6 +267,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       ArcherHat_0: 1587977117
+      ArcherHat_1: 96258558
       Hexagon Flat-Top: 2747690628134850419
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

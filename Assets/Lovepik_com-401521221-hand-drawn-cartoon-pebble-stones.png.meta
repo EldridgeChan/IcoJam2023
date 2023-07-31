@@ -1,0 +1,404 @@
+fileFormatVersion: 2
+guid: 386a1042879356e48a7cb02517554270
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_0
+      rect:
+        serializedVersion: 2
+        x: 354
+        y: 1389
+        width: 496
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27357597939da324a90fb7793460efa5
+      internalID: 1110739754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_1
+      rect:
+        serializedVersion: 2
+        x: 958
+        y: 1453
+        width: 447
+        height: 348
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db33cfa3ca69ab14ea66f452adb97ecc
+      internalID: 6145993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_2
+      rect:
+        serializedVersion: 2
+        x: 1419
+        y: 1106
+        width: 400
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c994905092d0ab340be5752c7f4bce55
+      internalID: -1346812662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 1039
+        width: 429
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa1c0c4f5f57e974faadd0fb572d00a9
+      internalID: 182359176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_4
+      rect:
+        serializedVersion: 2
+        x: 702
+        y: 1182
+        width: 556
+        height: 218
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 960e8b72e00859c4080b23634944a71f
+      internalID: -848614009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_5
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 770
+        width: 530
+        height: 337
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38ec7c35c8b23874f95b85c826cdb3cf
+      internalID: -329151854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_6
+      rect:
+        serializedVersion: 2
+        x: 1113
+        y: 875
+        width: 481
+        height: 306
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 387d718038abc9f4282b84b0cfb0fcea
+      internalID: 1037293602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_7
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 542
+        width: 523
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73cedc3f928306a4c924562123e84e57
+      internalID: 993163804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_8
+      rect:
+        serializedVersion: 2
+        x: 954
+        y: 510
+        width: 405
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59a6d9321fa3fd34f99a0f9509c81741
+      internalID: 2032854755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_9
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 544
+        width: 431
+        height: 294
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b99ab53ef7b2ca0429b55aa38f8697e1
+      internalID: 1982337394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_10
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 164
+        width: 499
+        height: 377
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 353413655c04e4a4ab7de19fe780d133
+      internalID: -1530105394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_11
+      rect:
+        serializedVersion: 2
+        x: 1001
+        y: 218
+        width: 572
+        height: 269
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acd351379166ce94baf7564f5578b200
+      internalID: -742061455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_0: 1110739754
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_1: 6145993
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_10: -1530105394
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_11: -742061455
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_2: -1346812662
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_3: 182359176
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_4: -848614009
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_5: -329151854
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_6: 1037293602
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_7: 993163804
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_8: 2032854755
+      Lovepik_com-401521221-hand-drawn-cartoon-pebble-stones_9: 1982337394
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

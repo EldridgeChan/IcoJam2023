@@ -16,7 +16,6 @@ public class KnightBehaviour : PawnBehaviour
     {
         if (HasTurn)
         {
-            Debug.Log("Has Turn");
             PawnAnmt.SetTrigger("Block");
             HasTurn = false;
         }

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - PlayerPawn
   - Shield
+  - EnemyPawn
+  - FakeArcher
+  - FakeKnight
+  - FakeScout
   layers:
   - Default
   - TransparentFX
@@ -42,6 +46,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemy
+    uniqueID: 3446595161
     locked: 0
   - name: Pawn
     uniqueID: 3698249025
