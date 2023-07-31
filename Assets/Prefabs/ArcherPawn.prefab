@@ -1247,6 +1247,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8320357218249434494, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: parentPawn
+      value: 
+      objectReference: {fileID: 2557304272516656149}
+    - target: {fileID: 8320357218249434494, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
       propertyPath: parentTrans
       value: 
       objectReference: {fileID: 8320386124005970804}

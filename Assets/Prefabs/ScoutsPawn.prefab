@@ -732,10 +732,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 713079172759129661}
     m_Modifications:
+    - target: {fileID: 1112373144580130376, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1112373144580130376, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 3928691222112834609, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
       propertyPath: m_Name
       value: PawnHub
       objectReference: {fileID: 0}
+    - target: {fileID: 5911100434112713381, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -317471155, guid: f230551a97bc19e48a55d4b7e084f01c, type: 3}
     - target: {fileID: 6070996626977247388, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -777,9 +789,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8320357218249434494, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: parentPawn
+      value: 
+      objectReference: {fileID: 6088116576420816965}
+    - target: {fileID: 8320357218249434494, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
       propertyPath: parentTrans
       value: 
       objectReference: {fileID: 713079172759129661}
+    - target: {fileID: 8938123844868889064, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8938123844868889064, guid: d56e9d9971cebf646b8d28b75b25f45d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
