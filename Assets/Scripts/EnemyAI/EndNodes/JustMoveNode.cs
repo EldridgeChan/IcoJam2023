@@ -31,7 +31,7 @@ public class JustMoveNode : AITreeNode
             Debug.Log("ERROR: Unreconized Class of Pawn: " + selfPawn.name);
             return false;
         }
-        Debug.Log(selfPawn.name + " Runs JustMoveNode");
+        //Debug.Log(selfPawn.name + " Runs JustMoveNode");
         return true;
     }
 }

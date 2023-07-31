@@ -20,7 +20,7 @@ public class PawnBehaviour : MonoBehaviour
     private bool hasAttack = false;
     public bool HasAttack { get { return hasAttack; } }
     private bool hasMove = false;
-    public bool HasMove { get { return hasMove; }  set { hasMove = value; } }
+    public bool HasMove { get { return hasMove; } set { hasMove = value; } }
     private bool hasTurn = false;
     public bool HasTurn { get { return hasTurn; } set { hasTurn = value; } }
 
@@ -29,7 +29,9 @@ public class PawnBehaviour : MonoBehaviour
     private ActionPhases currPhase;
     private bool isInAction = false;
     private Vector2 orgPos = Vector2.zero;
+    public Vector2 OrgPos { get { return orgPos; } }
     private Vector2 movePos = Vector2.zero;
+    public Vector2 MovePos { get { return movePos; } }
     private Vector2 orgDir = Vector2.zero;
     private Vector2 attackDir = Vector2.zero;
 
@@ -159,8 +161,10 @@ public class PawnBehaviour : MonoBehaviour
 
     public virtual void turnPawn(float t, bool isMove = true)
     {
-        float startRotation = (orgDir.y < 0.0f ? -1.0f : 1.0f) * Mathf.Acos(orgDir.x) * Mathf.Rad2Deg;
-        float endRotation = isMove ? ((movePos - orgPos).y < 0.0f ? -1.0f : 1.0f) * Mathf.Acos((movePos - orgPos).normalized.x) * Mathf.Rad2Deg : (attackDir.y < 0.0f ? -1.0f : 1.0f) * Mathf.Acos(attackDir.x) * Mathf.Rad2Deg;
+        //float startRotation = (orgDir.y < 0.0f ? -1.0f : 1.0f) * Mathf.Acos(orgDir.x) * Mathf.Rad2Deg;
+        //float endRotation = isMove ? ((movePos - orgPos).y < 0.0f ? -1.0f : 1.0f) * Mathf.Acos((movePos - orgPos).normalized.x) * Mathf.Rad2Deg : (attackDir.y < 0.0f ? -1.0f : 1.0f) * Mathf.Acos(attackDir.x) * Mathf.Rad2Deg;
+        float startRotation = (orgDir.y < 0 ? -1.0f : 1.0f) * Vector2.Angle(Vector2.right, orgDir);
+        float endRotation = isMove ? ((movePos - orgPos).y < 0 ? -1.0f : 1.0f) * Vector2.Angle(Vector2.right, (movePos - orgPos).normalized) : (attackDir.y < 0 ? -1.0f : 1.0f) * Vector2.Angle(Vector2.right, attackDir);
         pawnRig.rotation = Mathf.Lerp(startRotation, endRotation, t);
     }
 
@@ -172,7 +176,6 @@ public class PawnBehaviour : MonoBehaviour
         movePos = Vector2.Distance(pawnRig.position, mousePos) > classScriptObj.MoveDistance ? ((mousePos - pawnRig.position).normalized * classScriptObj.MoveDistance) + pawnRig.position : mousePos;
         movePos = new Vector2(Mathf.Clamp(movePos.x, -GameManager.Instance.GameDesignScriptObj.AreanaWidth, GameManager.Instance.GameDesignScriptObj.AreanaWidth), Mathf.Clamp(movePos.y, -GameManager.Instance.GameDesignScriptObj.AreanaHight, GameManager.Instance.GameDesignScriptObj.AreanaHight));
         GameManager.Instance.InterMan.InMoveControl = false;
-        //Debug.Log(gameObject.name + " Set Move Position at " + movePos);
     }
 
     public virtual void setAttackDir(Vector2 mousePos, bool justTurn = false)
@@ -211,6 +214,12 @@ public class PawnBehaviour : MonoBehaviour
     public Vector2 faceDir()
     {
         return new Vector2(Mathf.Cos(pawnRig.rotation * Mathf.Deg2Rad), Mathf.Sin(pawnRig.rotation * Mathf.Deg2Rad));
+    }
+
+    public void disableControlGUI()
+    {
+        pawnHubCon.setFakePawnActive(false);
+        pawnHubCon.setAttactIndicatorActive(false);
     }
 
     public void init()

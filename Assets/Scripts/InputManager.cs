@@ -25,6 +25,16 @@ public class InputManager : MonoBehaviour
 
     private void InputControl()
     {
+        if (GameManager.Instance.InterMan.SelectedPawn && GameManager.Instance.InterMan.InMoveControl)
+        {
+            GameManager.Instance.InterMan.SelectedPawn.PawnHubCon.moveFakePawn(mousePos, (mousePos - GameManager.Instance.InterMan.SelectedPawn.transform.position).normalized);
+        }
+        if (GameManager.Instance.InterMan.SelectedPawn && (GameManager.Instance.InterMan.InAttackControl || GameManager.Instance.InterMan.InTurnControl))
+        {
+            GameManager.Instance.InterMan.SelectedPawn.PawnHubCon.turnFakePawn(mousePos);
+        }
+
+
         if (Input.GetMouseButtonDown(0))
         {
             if (!GameManager.Instance.InterMan.SelectedPawn)

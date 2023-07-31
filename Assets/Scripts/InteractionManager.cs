@@ -124,6 +124,7 @@ public class InteractionManager : MonoBehaviour
                 InAttackControl = false;
                 InMoveControl = false;
                 InTurnControl = false;
+                disabloPawnControlGUI();
             }
             if (currPhase == ActionPhases.DiePhase)
             {
@@ -174,6 +175,14 @@ public class InteractionManager : MonoBehaviour
         else
         {
             Debug.Log("ERROR: Unexpected Phase to start action");
+        }
+    }
+
+    private void disabloPawnControlGUI()
+    {
+        foreach (PawnBehaviour pawn in playerPawns)
+        {
+            pawn.disableControlGUI();
         }
     }
 
@@ -240,6 +249,15 @@ public class InteractionManager : MonoBehaviour
             inTurnControl = false;
             inMoveControl = false;
             selectedPawn.PawnHubCon.openOptions(!isOn);
+            if (isOn)
+            {
+                selectedPawn.PawnHubCon.setAttactIndicatorActive(true);
+                selectedPawn.PawnHubCon.setFakePawnActive(true);
+                if (!selectedPawn.HasMove)
+                {
+                    selectedPawn.PawnHubCon.moveFakePawn(selectedPawn.transform.position, selectedPawn.faceDir());
+                }
+            }
         }
     }
 
@@ -251,6 +269,14 @@ public class InteractionManager : MonoBehaviour
             inAttackControl = false;
             inMoveControl = false;
             selectedPawn.PawnHubCon.openOptions(!isOn);
+            if (isOn)
+            {
+                selectedPawn.PawnHubCon.setAttactIndicatorActive(false);
+                if (!selectedPawn.HasMove)
+                {
+                    selectedPawn.PawnHubCon.moveFakePawn(selectedPawn.transform.position, selectedPawn.faceDir());
+                }
+            }
         }
     }
 
@@ -262,6 +288,16 @@ public class InteractionManager : MonoBehaviour
             inAttackControl = false;
             inTurnControl = false;
             selectedPawn.PawnHubCon.openOptions(!isOn);
+            if (isOn)
+            {
+                selectedPawn.PawnHubCon.setFakePawnActive(true);
+                selectedPawn.PawnHubCon.setAttactIndicatorActive(false);
+            } 
+            else
+            {
+                selectedPawn.PawnHubCon.setFakePawnActive(selectedPawn.HasMove);
+                selectedPawn.PawnHubCon.moveFakePawn();
+            }
         }
     }
 
