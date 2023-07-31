@@ -122,4 +122,13 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PlayGround3/30.unity
     guid: 06f8c073d32288c468e18763c511cdfd
+  - enabled: 1
+    path: Assets/Scenes/Map1.unity
+    guid: 3651ad3edff3c174ba282c6d45b6b8b1
+  - enabled: 1
+    path: Assets/Scenes/Map2.unity
+    guid: 5fbab1049839f0b489fadd7dbc15c409
+  - enabled: 1
+    path: Assets/Scenes/Map3.unity
+    guid: d14333d400edc764ab4526d91cf6fdb7
   m_configObjects: {}
