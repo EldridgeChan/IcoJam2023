@@ -7,6 +7,9 @@ TagManager:
   - PlayerPawn
   - Shield
   - EnemyPawn
+  - FakeArcher
+  - FakeKnight
+  - FakeScout
   layers:
   - Default
   - TransparentFX

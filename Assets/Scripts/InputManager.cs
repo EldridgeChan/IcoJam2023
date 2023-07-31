@@ -9,14 +9,17 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (GameManager.Instance.InterMan.InPawnManagment)
+        {
+            pawnManagementInput();
+        }
         if (GameManager.Instance.InterMan.CurrPhase == ActionPhases.ControlPhase)
         {
             InputControl();
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameManager.Instance.InterMan.startActionPhase();
-            Debug.Log("Action Phase Started");
+            GameManager.Instance.CanvasCon.retry();
         }
     }
 
@@ -87,19 +90,48 @@ public class InputManager : MonoBehaviour
         if (GameManager.Instance.InterMan.InAttackControl)
         {
             GameManager.Instance.InterMan.SelectedPawn.setAttackDir(mousePos);
-            
+            GameManager.Instance.InterMan.SelectedPawn.PawnHubCon.openOptions(true);
         }
         else if (GameManager.Instance.InterMan.InMoveControl)
         {
             GameManager.Instance.InterMan.SelectedPawn.setMovePos(mousePos);
+            GameManager.Instance.InterMan.SelectedPawn.PawnHubCon.openOptions(true);
         }
         else if (GameManager.Instance.InterMan.InTurnControl)
         {
             GameManager.Instance.InterMan.SelectedPawn.setAttackDir(mousePos, true);
+            GameManager.Instance.InterMan.SelectedPawn.PawnHubCon.openOptions(true);
         }
         else
         {
             trySelectPawn();
+        }
+    }
+
+    private void pawnManagementInput()
+    {
+        if (GameManager.Instance.InterMan.SelectedPawn)
+        {
+            GameManager.Instance.InterMan.moveFakePawn(mousePos);
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (GameManager.Instance.InterMan.SelectedPawn)
+            {
+                GameManager.Instance.InterMan.placeFakePawn(mousePos);
+            }
+            else
+            {
+                RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector3.forward);
+                if (hit.collider != null && hit.collider.CompareTag("PlayerPawn"))
+                {
+                    GameManager.Instance.InterMan.pickUpFakePawn(hit.collider.GetComponent<PawnBehaviour>());
+                }
+            }
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            GameManager.Instance.InterMan.trashFakePawn();
         }
     }
 }

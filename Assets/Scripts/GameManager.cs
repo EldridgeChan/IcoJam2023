@@ -21,15 +21,12 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+        if (Instance != null)
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);    
         }
-        else
-        {
-            DestroyImmediate(gameObject);
-        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
         if (!interMan) { interMan = GetComponent<InteractionManager>(); }
         if (!aiTree) { aiTree = GetComponent<AITreeHead>(); }
     }

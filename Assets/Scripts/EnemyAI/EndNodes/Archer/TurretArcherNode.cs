@@ -47,7 +47,7 @@ public class TurretArcherNode : AITreeNode
         List<Vector2> result = new List<Vector2>();
         foreach (PawnBehaviour pawn in selectedList)
         {
-            result.Add(GameManager.Instance.AITree.PawnAIAction[selfPawns.IndexOf(pawn)].movePos);
+            result.Add(GameManager.Instance.InterMan.AIActions[selfPawns.IndexOf(pawn)].movePos);
         }
         return result;
     }

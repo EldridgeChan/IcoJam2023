@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class AITreeHead : MonoBehaviour
 {
-    private List<PawnAction> pawnAIActions = new List<PawnAction>();
-    public List<PawnAction> PawnAIAction { get { return pawnAIActions; } }
-
     private AITreeNode head;
 
     private void Start()
